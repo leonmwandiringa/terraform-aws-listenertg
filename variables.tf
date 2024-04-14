@@ -48,6 +48,18 @@ variable "http_port" {
   description = "The port for the HTTP listener"
 }
 
+variable "tcp_udp_port" {
+  type = number
+  default = 80
+  description = "tcp udp port"
+}
+
+variable "tcp_udp_enabled" {
+  type = bool
+  default = false
+  description = "tcp or udp enabledment"
+}
+
 variable "http_enabled" {
   type        = bool
   default     = true

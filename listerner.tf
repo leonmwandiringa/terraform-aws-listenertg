@@ -1,4 +1,19 @@
 resource "aws_lb_listener" "http_forward" {
+  count             = var.tcp_udp_enabled != true ? 1 : 0
+  load_balancer_arn = var.load_balancer_arn
+  port              = var.http_port
+  protocol          = "TCP_UDP"
+  tags              = merge(var.tags, {
+    Name = "TCP_UDP Forward Listener"
+  })
+
+  default_action {
+    target_group_arn = aws_lb_target_group.default.arn
+    type             = "forward"
+  }
+}
+
+resource "aws_lb_listener" "http_forward" {
   count             = var.http_enabled && var.http_redirect != true ? 1 : 0
   load_balancer_arn = var.load_balancer_arn
   port              = var.http_port

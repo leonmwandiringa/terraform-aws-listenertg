@@ -8,6 +8,11 @@ output "target_group_arn_suffix" {
   value       = aws_lb_target_group.default.arn_suffix
 }
 
+output "tcp_udp_listener_arn" {
+  description = "The ARN of the tcp_udp forwarding listener"
+  value       = join("", aws_lb_listener.tcp_udp_forward.*.arn)
+}
+
 output "http_listener_arn" {
   description = "The ARN of the HTTP forwarding listener"
   value       = join("", aws_lb_listener.http_forward.*.arn)

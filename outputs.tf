@@ -10,7 +10,7 @@ output "target_group_arn_suffix" {
 
 output "tcp_udp_listener_arn" {
   description = "The ARN of the tcp_udp forwarding listener"
-  value       = join("", aws_lb_listener.tcp_udp_forward.*.arn)
+  value       = var.tcp_udp_enabled == true ? aws_lb_listener.tcp_udp_forward[0].arn : null
 }
 
 output "http_listener_arn" {

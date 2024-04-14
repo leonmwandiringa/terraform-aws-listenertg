@@ -3,6 +3,7 @@ resource "aws_lb_listener" "tcp_udp_forward" {
   load_balancer_arn = var.load_balancer_arn
   port              = var.tcp_udp_port
   protocol          = "TCP_UDP"
+  depends_on = [ aws_lb_target_group.default ]
   tags              = merge(var.tags, {
     Name = "TCP_UDP Forward Listener"
   })

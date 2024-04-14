@@ -1,7 +1,7 @@
 resource "aws_lb_listener" "tcp_udp_forward" {
   count             = var.tcp_udp_enabled != true ? 1 : 0
   load_balancer_arn = var.load_balancer_arn
-  port              = var.http_port
+  port              = var.tcp_udp_port
   protocol          = "TCP_UDP"
   tags              = merge(var.tags, {
     Name = "TCP_UDP Forward Listener"

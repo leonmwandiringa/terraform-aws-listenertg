@@ -5,7 +5,7 @@ resource "aws_lb_target_group" "default" {
   protocol_version              = var.target_group_target_type == "HTTP" || var.target_group_target_type == "HTTPS" ? var.target_group_protocol_version : null
   vpc_id                        = var.vpc_id
   target_type                   = var.target_group_target_type
-  load_balancing_algorithm_type = var.load_balancing_algorithm_type
+  load_balancing_algorithm_type = var.target_group_target_type == "HTTP" || var.target_group_target_type == "HTTPS" ? var.load_balancing_algorithm_type : null
   deregistration_delay          = var.deregistration_delay
   slow_start                    = var.slow_start
 
